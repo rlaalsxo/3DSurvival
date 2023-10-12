@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        controller = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        controller = PlayerController.instance;
     }
     public void OnSettingInput(InputAction.CallbackContext context)
     {

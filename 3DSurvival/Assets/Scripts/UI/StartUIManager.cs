@@ -8,41 +8,13 @@ public class StartUIManager : MonoBehaviour
     [SerializeField] Image fillBarImage;
     [SerializeField] Image fillImage;
     [SerializeField] Image titleImage;
-    [SerializeField] GameObject startButton;
-    float _count;
-    float _alpha;
-    Color _color;
-    void Start()
+    [SerializeField] Button startButton;
+    void Awake()
     {
-        _color = titleImage.color;
+        startButton.onClick.AddListener(StartButtonClick);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void StartButtonClick()
     {
-        if(fillImage.fillAmount >= 1f) 
-        {
-            fillBarImage.gameObject.SetActive(false);
-            _color.a += Time.deltaTime * 2f;
-            titleImage.color = _color;
-            if(titleImage.color.a >= 1f)
-            {
-                _count += Time.deltaTime;
-                if (_count >= 1f)
-                {
-                    backImage.gameObject.SetActive(false);
-                    startButton.SetActive(true);
-                }
-                
-            }
-        }
-        else
-        {
-            fillImage.fillAmount += Time.deltaTime;
-        }
-    }
-    public void GameStart()
-    {
-        SceneManager.LoadScene("GameScene");
+        LoadingSceneManager.LoadScene(2, null);
     }
 }
